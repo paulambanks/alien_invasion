@@ -12,7 +12,7 @@ class Alien(Sprite):
         self.ai_settings = ai_settings
 
         # Load the alien image and set its rect attribute
-        self.image = pygame.image.load('/Users/pbanks/Documents/Python/alien_invasion/images/alien.bmp')
+        self.image = pygame.image.load("/Users/pbanks/Documents/Programming/Python/Games/alien_invasion/images/alien.bmp")
         self.rect = self.image.get_rect()
 
         # Start each new alien near the top left of the screen
@@ -30,11 +30,7 @@ class Alien(Sprite):
 
     def check_edges(self):
         """Return True if Alien is at the edge of the screen"""
-        screen_rect = self.screen.get_rect()
-        if self.rect.right >= (screen_rect.right - 30):
-            return True
-        elif self.rect.left <= 0:
-            return True
+        return not self.ai_settings.inside_horizontal(self.rect)
 
     def update(self):
         """Move Alien right or left"""
